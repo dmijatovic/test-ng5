@@ -11,8 +11,8 @@ import { Feature1Module } from './feature1/feature1.module'
 import { Feature2Module } from './feature2/feature2.module'
 import { HelpModule } from './help/help.module';
 import { UserModule } from './user/user.module';
-
 import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
 
 import { MainPageTemplate } from './layout/main/main.component';
 
@@ -46,6 +46,7 @@ export const routes:Routes=[{
     HelpModule,
     UserModule,
     LayoutModule,
+    SharedModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
