@@ -14,10 +14,7 @@ import {
 export class CounterComponent implements OnInit {
   @Input() title:string;
   @Output() OneUpDownReset = new EventEmitter();
-  //@Output() OneDown = new EventEmitter();
-  //@Output() Reset = new EventEmitter();
-
-  count:number=0;
+  @Input() count:number=0;
 
   constructor(
     //private counterSvc: CounterService
@@ -29,14 +26,14 @@ export class CounterComponent implements OnInit {
 
   oneUp(){
     console.log("one up")
-    this.count++;
+    //this.count++;
     this.OneUpDownReset.next(1);
     //this.counterSvc.setOnUpDownReset(1);
   }
 
   oneDown(){
     console.log("one down")
-    this.count--;
+    //this.count--;
     this.OneUpDownReset.next(-1);
     //this.counterSvc.setOnUpDownReset(1);
   }
@@ -45,7 +42,7 @@ export class CounterComponent implements OnInit {
     console.log("reset")
     this.OneUpDownReset.next(- this.count);
     //this.counterSvc.setOnUpDownReset(- this.count);
-    this.count=0;
+    //this.count=0;
   }
 
 }

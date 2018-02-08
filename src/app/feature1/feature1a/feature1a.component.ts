@@ -7,7 +7,7 @@ import { Feature1Service } from './feature1a.service';
 
 @Component({
   selector: 'app-feature1a',
-  providers:[Feature1Service],
+  providers: [ Feature1Service ],
   templateUrl: './feature1a.component.html',
   styleUrls: ['./feature1a.component.css']
 })
