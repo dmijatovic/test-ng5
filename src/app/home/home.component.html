@@ -1,3 +1,29 @@
 <p>
   home works!
 </p>
+
+<!--- main counter -->
+
+<div class="title">
+  {{title}}
+</div>
+<div class="teller">
+  {{count}}
+</div>
+
+
+<!--- children -->
+<app-counter
+  [title]="'Tellerje 1'"
+  (OneUpDownReset)="onOneUpDownReset($event)">
+</app-counter>
+
+<app-counter
+  [title]="'Tellerje 2'"
+  (OneUpDownReset)="onOneUpDownReset($event)">
+</app-counter>
+
+<app-counter
+  [title]="'Tellerje 3'"
+  (OneUpDownReset)="onOneUpDownReset($event)">
+</app-counter>

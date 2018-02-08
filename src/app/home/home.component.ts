@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  title:string="Main counter";
+  count:number=0;
+
   constructor(
     private router:Router
   ) { }
@@ -16,5 +19,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log("router...", this.router);
   }
-
+  onOneUpDownReset(num){
+    console.log("number...", num);
+    this.count+=num;
+  }
 }

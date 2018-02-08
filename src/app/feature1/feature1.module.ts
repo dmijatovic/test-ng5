@@ -11,6 +11,7 @@ import { Tab3Component } from './feature1a/tab3/tab3.component';
 import { ViewComponent } from './feature1b/view/view.component';
 import { EditComponent } from './feature1b/edit/edit.component'
 
+import { SharedModule } from '../shared/shared.module';
 
 const routes=[{
   path:'f1a',
@@ -42,6 +43,7 @@ const routes=[{
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
