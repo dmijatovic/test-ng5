@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class CounterService {
+export class Feature1Service {
 
   constructor() { }
 
-  count:6
+  count:6;
 
   OnUpDownReset = new Subject();
   OnUpDownReset$ = this.OnUpDownReset.asObservable();

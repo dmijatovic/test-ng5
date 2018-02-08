@@ -11,5 +11,9 @@ export class Tab1Component implements OnInit {
 
   ngOnInit() {
   }
+  onOneUpDownReset(e){
+    console.log("tab1...", e);
+  }
+
 
 }
