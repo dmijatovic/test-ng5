@@ -25,3 +25,27 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## SCSS
+- change css in scss in angular-cli.json
+- rename style.css naar main.scss
+- add style to main.component
+- examine head
+- change start naar dev in package.json
+  ng serve -ec -sm
+- add simple style in main.component.scss
+- add same reference to help.component.scss
+- examine header of index.html
+  - how many components are on page?
+  - how many styles are added to header? 
+
+- add user template to user page
+- style:
+  - body in main.scss
+  - app.component
+  - user page in overview.scss
+
+- update routing for help and user (include template)
+- add page-body class to help.start component
+- style app-body in main.scss (or _layout.scss)
+

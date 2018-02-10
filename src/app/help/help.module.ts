@@ -4,9 +4,16 @@ import { StartComponent } from './start/start.component';
 
 import { Routes, RouterModule } from '@angular/router';
 
+import { HelpPageTemplate } from '../layout/help/help.component'
+
 const routes=[{
   path:'help',
-  component: StartComponent
+  component: HelpPageTemplate,
+  children:[{
+    path:'',
+    component: StartComponent
+  }]
+  
 }]
 
 

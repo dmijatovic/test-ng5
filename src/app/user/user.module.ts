@@ -4,10 +4,17 @@ import { OverviewComponent } from './overview/overview.component';
 
 
 import { Routes, RouterModule } from '@angular/router';
+import { UserPageTemplate } from '../layout/user/user.component';
+
 
 const routes=[{
   path:'user',
-  component: OverviewComponent
+  component:UserPageTemplate,
+  children:[{
+    path:'',
+    component: OverviewComponent
+  }]
+  
 }]
 
 
