@@ -1,9 +1,2 @@
-<p>
-  tab2 works!
-</p>
-
-
-<app-counter
-  [title]="'Tellerje 2'">
-</app-counter>
-  
+<!-- Children -->
+<app-counter [title]="'Tellertje 2'" (OneUpDownReset)="onOneUpDownReset($event)" [count]="count"></app-counter>

@@ -1,36 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CounterService } from '../../shared/counter/counter.service';
 import { Subscription } from 'rxjs/Subscription';
-
 import { Feature1Service } from './feature1a.service';
 
-
 @Component({
-  selector: 'app-feature1a',
-  providers:[Feature1Service],
-  templateUrl: './feature1a.component.html',
-  styleUrls: ['./feature1a.component.css']
+	selector: 'app-feature1a',
+	providers: [Feature1Service],
+	templateUrl: './feature1a.component.html',
+	styleUrls: ['./feature1a.component.css']
 })
 export class Feature1aComponent implements OnInit {
-  title:string="Main counter";
-  count=0;
-  OnUpDownReset$:Subscription
-  constructor(
-    private counterSvc:Feature1Service
-  ) { }
+	title: string = "Feature 1 A";
+	count: number = 0;
+	onOneUpDownReset$: Subscription;
+	constructor(
+		private counterSvc: CounterService,
+	) { }
 
-  ngOnInit() {
-    this.OnUpDownReset$ = this.counterSvc.OnUpDownReset$
-    .subscribe((n)=>{
-      this.onOneUpDownReset(n);
-    })
-  }
+	ngOnInit() {
+		this.onOneUpDownReset$ = this.counterSvc.onOneUpDownReset$.subscribe((num) => {
+			this.onOneUpDownReset(num);
+		});
+	}
 
-  onOneUpDownReset(num){
-    console.log("num...", num)
-    this.count+=num;
-  }
+	onOneUpDownReset(num) {
+		console.log("onOneUpDownReset: ", num);
+		this.count = this.count + num;
+	}
 
 }
-
-
