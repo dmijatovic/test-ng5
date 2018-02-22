@@ -1,18 +1,32 @@
 
+@import '../../styles/variables';
+
 section{
-  display:flex;
-  padding:16px;
+  display: flex;
+  padding: $padding-v-xl;
+  background-color: $primary-color;
+  color: $primary-color-contrast;
 }
+
 #sec1{
   flex:1;
-  background-color: aqua;
+  //background-color: aqua;
   //min-height: 500px;
 }
 
+.page-body{
+  #sec1{
+    background-color: $warning-color;
+  }
+}
+
+
 .box{
   border: 2px dashed grey;
-  flex:1;
-  padding:16px 0px;
+  //flex:1;
+  padding: $padding-h-xl;
+  width: 300px;
+  box-sizing: border-box;
 }
 
 #box2{
@@ -27,4 +41,12 @@ section{
 
 .child{
   flex:1;
+}
+
+#box2-child1{
+  align-self: flex-start;
+}
+
+#box2-child3{
+  align-self: flex-end;
 }
