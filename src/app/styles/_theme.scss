@@ -1,0 +1,46 @@
+//import fonts 
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+//import angular material theming location
+@import '~@angular/material/theming';
+
+@import './variables';
+
+//local copy is handy for checking?
+//@import 'theming';
+
+// Define custom typography config that overrides the font-family as well as the
+// https://material.angular.io/guide/typography
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: $font-primary,
+  $headline: mat-typography-level(32px, 48px, 700),
+  $title: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500),
+  $button: mat-typography-level(16px, 24px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input: mat-typography-level(16px, 1.42, 500)
+);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme (same as the example above).
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+$app-warn: mat-palette($mat-pink, A200, A100, A400);
+$app-theme: mat-light-theme(
+  $app-primary, $app-accent, $app-warn
+);
+
+// Include the default theme styles.
+@include angular-material-theme($app-theme);
+
+
+

@@ -1,13 +1,18 @@
+//import angular material theming location
+@import '~@angular/material/theming';
 
+$font-primary: "'Lato', 'Open Sans', sans-serif";
 
-$primary-color:#666;
-$primary-color-contrast:#fff;
-$secondary-color:#555;
-$secondary-color-contrast:#fff;
-$warning-color:#A73;
-$secondary-color-contrast:#fff;
-$border-color: #888;
-$secondary-color-contrast:#fff;
+$primary-color: mat-color($mat-blue, 500);
+$primary-color-contrast: mat-contrast($mat-blue, 400);
+
+$secondary-color: mat-color($mat-lime, 500);
+$secondary-color-contrast: mat-contrast($mat-lime, 500);
+
+$warning-color: mat-color($mat-deep-orange, 400);
+$warning-color-contrast: mat-contrast($mat-deep-orange, 400);
+
+$border-color: mat-color($mat-grey, 400);
 
 $padding-v-sm:8px 0px;
 $padding-h-sm:0px 8px;

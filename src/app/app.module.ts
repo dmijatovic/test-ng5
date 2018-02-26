@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
@@ -40,7 +41,7 @@ export const routes:Routes=[{
     HomeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule, BrowserAnimationsModule,
     Feature1Module,
     Feature2Module,
     HelpModule,

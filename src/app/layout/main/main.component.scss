@@ -1,4 +1,6 @@
 
+@import '../../styles/variables';
+
 :host{
   display:flex;
   flex-direction: column;
@@ -11,10 +13,14 @@ header{
   display:flex;
   padding: 8px;
   font-size: 24px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid $border-color;
+  background-color: $primary-color;
+  color: $primary-color-contrast;
 }
 
 footer{
-  border-top: 1px solid grey;
+  border-top: 1px solid $border-color;
   padding: 8px;
+  color: $primary-color;
+  background-color: $primary-color-contrast;
 }
