@@ -49,3 +49,18 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - add page-body class to help.start component
 - style app-body in main.scss (or _layout.scss)
 
+## Material
+- install @angular/material theme (https://material.angular.io/guide/getting-started)
+- copy material _theming.scss into styles folder for reference (maybe just use this)
+- create _theme.scss in styles folder
+- include angular material theming
+- customize theme fonts
+- customize theme colors (use variables.scss)
+- create menu that uses config file to load routes in the header
+- create form on user page using material controls:
+- group 1: firstName, lastName
+- group 2: email, password
+- group 3: address:
+- street, number, postcode, country
+- group 4: origin
+  - date of birth, place of birth
