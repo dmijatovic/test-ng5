@@ -1,6 +1,8 @@
+@import "../../styles/_variables.scss";
 
-:host{
-  flex:1;
-  display:flex;
+:host {
+  flex: 1;
+  display: flex;
   flex-direction: column;
+  padding: $padding-h-lg
 }

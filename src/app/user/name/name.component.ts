@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { ControlContainer } from '@angular/forms';
 
 @Component({
-  selector: 'app-name',
-  templateUrl: './name.component.html',
-  styleUrls: ['./name.component.scss']
+	selector: 'app-name',
+	templateUrl: './name.component.html',
+	styleUrls: ['./name.component.scss']
 })
 export class NameComponent implements OnInit {
+	@Input() title: string = "";
+	@Input() oFormElems = [];
 
-  oFormElems=[
-    {name:'firstName', label:'FirstName', required:true },
-    {name:'lastName', label:'LastName', required:true },
-  ]
+	constructor(
+		public controlContainer: ControlContainer
+	) { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }
