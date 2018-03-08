@@ -3,8 +3,18 @@ import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './overview/overview.component';
 
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input'
+
 import { Routes, RouterModule } from '@angular/router';
 import { UserPageTemplate } from '../layout/user/user.component';
+import { NameComponent } from './name/name.component';
+import { CredentialsComponent } from './credentials/credentials.component';
+import { AddressComponent } from './address/address.component';
+import { OriginComponent } from './origin/origin.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 const routes=[{
@@ -21,8 +31,10 @@ const routes=[{
 @NgModule({
   imports: [
     CommonModule,
+    MatFormFieldModule, MatInputModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [OverviewComponent]
+  declarations: [OverviewComponent, NameComponent, CredentialsComponent, AddressComponent, OriginComponent]
 })
 export class UserModule { }

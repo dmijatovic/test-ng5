@@ -1,3 +1,29 @@
 <p>
   overview works!
 </p>
+
+
+<form [formGroup]="formMain">
+  <app-name></app-name>
+  <app-credentials
+    [title]="formGroups.credentials.title"
+    [oFormElems]="formGroups.credentials.fields"
+    [formGroupName]="'credentials'">
+  </app-credentials>
+</form>
+
+<app-address></app-address>
+
+<app-origin></app-origin>
+
+
+<section>
+  status:
+  <pre>
+    {{formMain.status | json}}
+  </pre>
+  value
+  <pre>
+    {{formMain.value | json}}
+  </pre>
+</section>

@@ -1,0 +1,10 @@
+<h3>Your name</h3>
+
+<mat-form-field 
+  *ngFor="let item of oFormElems">
+  <input matInput 
+    [id]="item.name"
+    [placeholder]="item.label"
+    [required]="item.required">
+</mat-form-field>
+
