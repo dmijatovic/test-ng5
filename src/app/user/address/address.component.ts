@@ -11,18 +11,14 @@ import { ControlContainer } from '@angular/forms';
   }
 })
 export class AddressComponent implements OnInit {
-  @Input() title:string="";
-  @Input() oFormElems=[];
-  /*
-  oFormElems=[
-    {name:'username', label:'username', required:true, type:"text" },
-    {name:'password', label:'password', required:true, type:'password' },
-  ]*/
-  constructor(
-    public controlContainer:ControlContainer
-  ) { }
+	@Input() title: string = "";
+	@Input() oFormElems = [];
 
-  ngOnInit() {
-  }
+	constructor(
+		public controlContainer: ControlContainer
+	) { }
+
+	ngOnInit() {
+	}
 
 }

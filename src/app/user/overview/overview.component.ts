@@ -11,104 +11,104 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   }
 })
 export class OverviewComponent implements OnInit {
-  formMain:FormGroup;
+	formMain: FormGroup;
 
-  formGroups={
-    name:{
-      title:'Name',
-      fields:[
-        {name:'firstName', label:'FirstName', required:true },
-        {name:'lastName', label:'LastName', required:true }
-      ]
-    },
-    credentials:{
-      title:"Credentials",
-      fields:[{
-        name:'username', label:'username', required:true, type:"text" 
-      },{
-        name:'times', label:'How many retries', required:true, type:"number" 
-      },{
-        name:'password', label:'password', required:true, type:'password' 
-      },{
-        name:'rememberMe', label:'Remember me', required:false, type:'checkbox' 
-      }]
-    },
-    address:{
-      title:"Address",
-      fields:[{
-        name:'street', label:'Street', required:true, type:"text" 
-      },{
-        type:'radio',
-        name:'addressType',
-        label:"Type of adress",
-        required:true,
-        options:[{
-          label:'Post address',
-          value: 1
-        },{
-          label:'Invoice address',
-          value: 2
-        }] 
-      },{
-        type:'select',
-        name:'country',
-        label:"Country",
-        required:true,
-        options:[{
-          label:'NL',
-          value: 1
-        },{
-          label:'BE',
-          value: 2
-        }] 
-      }]
-    }
-  }
+	formGroups = {
+		name: {
+			title: 'Name',
+			fields: [
+				{ name: 'firstName', label: 'FirstName', required: true },
+				{ name: 'lastName', label: 'LastName', required: true },
+			]
+		},
+		credentials: {
+			title: "Credentials",
+			fields: [
+				{ name: 'username', label: 'username', required: true, type: "text" },
+				{ name: 'times', label: 'How many retries', required: true, type: "number" },
+				{ name: 'password', label: 'password', required: true, type: 'password' },
+				{ name: 'rememberMe', label: 'Remember me', required: true, type: 'checkbox' },
+			]
+		},
+		"address": {
+			title: "Address",
+			fields: [
+				{
+					label: "Type",
+					name: "type",
+					type: "radio",
+					required: true,
+					options: [
+						{ value: '1', label: "Post" },
+						{ value: '2', label: "Visit" }
+					]
+				},
 
-  constructor(
-    private fb:FormBuilder
-  ){ }
+				{ label: "street", name: "street", required: false, },
+				{ label: "number", name: "number", required: true, },
+				{ label: "zipcode", name: "zipcode", required: true, },
+				{
+					label: "Country",
+					name: "country",
+					type: "select",
+					required: true,
+					options: [
+						{ value: 'NL', label: "Nederland" },
+						{ value: 'BE', label: "België" }
+					]
+				},
 
-  ngOnInit() {
-    this.buildForm();
-  }
+	]
+		},
+		// "origin": {
+		// 	title: "Origin",
+		// 	fields: [
+		// 		{ label: "Date of birth", name: "DateOfBirth", required: false, },
+		// 		{ label: "Place of birth", name: "PlaceOfBirth", required: false, },
+		// 	]
+		// }
+	}
 
-  buildForm(){
-    let groups={}, glist=Object.keys(this.formGroups);
-    
-    //debugger
-    glist.map((key)=>{
-      let group = this.formGroups[key];
-      let g = this.buildGroup(group.fields);
-      groups[key] = g;
-    });
+	constructor(
+		private fb: FormBuilder
+	) { }
 
+	ngOnInit() {
+		this.buildForm();
+	}
 
-    this.formMain = this.fb.group(groups);
-  }
+	buildForm() {
+		let groups = {}, glist = Object.keys(this.formGroups);
 
-  buildGroup(fields){
-    let g = new FormGroup({}) ; 
+		//debugger
+		glist.map((key) => {
+			let group = this.formGroups[key];
+			let g = this.buildGroup(group.fields);
+			groups[key] = g;
+		});
 
-    fields.map((field)=>{
-      let f:FormControl; 
-      
-      if (field.required){
-        if (field.type=="checkbox"){
-          f = new FormControl(false, Validators.requiredTrue)
-        }else{
-          f = new FormControl("", Validators.required)
-        }
-      }else{
-        if (field.type=="checkbox"){
-          f = new FormControl(false)
-        }else{
-          f = new FormControl("");
-        }
-      }
-      g.addControl(field.name, f);
-    });
+		this.formMain = this.fb.group(groups);
+	}
 
-    return g;
-  } 
+	buildGroup(fields) {
+		let g = new FormGroup({});
+
+		fields.map((field) => {
+			let f: FormControl;
+			if (field.type == 'checkbox' && field.required) {
+				f = new FormControl(false, Validators.requiredTrue)
+			} else if (field.required) {
+				f = new FormControl("", Validators.required)
+			} else {
+				if (field.type == 'checkbox') {
+					f = new FormControl(false)
+				} else {
+					f = new FormControl("")
+				}
+			}
+			g.addControl(field.name, f);
+		});
+
+		return g;
+	}
 }

@@ -22,7 +22,7 @@ export class NameComponent implements OnInit {
     public controlContainer:ControlContainer
   ) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
 }
