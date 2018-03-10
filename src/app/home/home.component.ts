@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss'],
+  host:{
+    "class":"app-body-content"
+  }
 })
 export class HomeComponent implements OnInit {
 

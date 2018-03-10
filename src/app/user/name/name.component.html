@@ -1,10 +1,27 @@
-<h3>Your name</h3>
 
-<mat-form-field 
-  *ngFor="let item of oFormElems">
-  <input matInput 
+<h3>{{title}}</h3>
+
+<section [formGroup]="controlContainer.control">
+
+<ng-container *ngFor="let item of oFormElems">
+
+  <mat-checkbox *ngIf="item.type=='checkbox'"
     [id]="item.name"
-    [placeholder]="item.label"
+    [formControlName]="item.name"
     [required]="item.required">
-</mat-form-field>
+    {{item.label}}
+  </mat-checkbox>
+  
+  <mat-form-field *ngIf="item.type!='checkbox'">
+    <input *ngIf="item.type!='checkbox'" 
+      matInput 
+      [id]="item.name"
+      [type]="item.type"
+      [placeholder]="item.label"
+      [formControlName]="item.name"
+      [required]="item.required">
+    </mat-form-field>
 
+</ng-container>
+
+</section>

@@ -5,7 +5,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+  styleUrls: ['./overview.component.scss'],
+  host:{
+    "class":"app-body-content"
+  }
 })
 export class OverviewComponent implements OnInit {
   formMain:FormGroup;
@@ -26,6 +29,38 @@ export class OverviewComponent implements OnInit {
         name:'times', label:'How many retries', required:true, type:"number" 
       },{
         name:'password', label:'password', required:true, type:'password' 
+      },{
+        name:'rememberMe', label:'Remember me', required:false, type:'checkbox' 
+      }]
+    },
+    address:{
+      title:"Address",
+      fields:[{
+        name:'street', label:'Street', required:true, type:"text" 
+      },{
+        type:'radio',
+        name:'addressType',
+        label:"Type of adress",
+        required:true,
+        options:[{
+          label:'Post address',
+          value: 1
+        },{
+          label:'Invoice address',
+          value: 2
+        }] 
+      },{
+        type:'select',
+        name:'country',
+        label:"Country",
+        required:true,
+        options:[{
+          label:'NL',
+          value: 1
+        },{
+          label:'BE',
+          value: 2
+        }] 
       }]
     }
   }
@@ -57,10 +92,19 @@ export class OverviewComponent implements OnInit {
 
     fields.map((field)=>{
       let f:FormControl; 
+      
       if (field.required){
-        f = new FormControl("", Validators.required)
+        if (field.type=="checkbox"){
+          f = new FormControl(false, Validators.requiredTrue)
+        }else{
+          f = new FormControl("", Validators.required)
+        }
       }else{
-        f = new FormControl("")
+        if (field.type=="checkbox"){
+          f = new FormControl(false)
+        }else{
+          f = new FormControl("");
+        }
       }
       g.addControl(field.name, f);
     });

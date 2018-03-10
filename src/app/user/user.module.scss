@@ -1,0 +1,10 @@
+
+@import '../styles/variables';
+
+.user-form-block{
+  display: block;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid $border-color;
+  border-radius:2px;
+}

@@ -5,7 +5,10 @@ import { ControlContainer } from '@angular/forms';
 @Component({
   selector: 'app-credentials',
   templateUrl: './credentials.component.html',
-  styleUrls: ['./credentials.component.scss']
+  styleUrls: ['./credentials.component.scss'],
+  host:{
+    "class":"user-form-block"
+  }
 })
 export class CredentialsComponent implements OnInit {
   @Input() title:string="";

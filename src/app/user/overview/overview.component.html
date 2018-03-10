@@ -4,15 +4,24 @@
 
 
 <form [formGroup]="formMain">
-  <app-name></app-name>
+  <app-name
+    [title]="formGroups.name.title"
+    [oFormElems]="formGroups.name.fields"
+    [formGroupName]="'name'"></app-name>
   <app-credentials
     [title]="formGroups.credentials.title"
     [oFormElems]="formGroups.credentials.fields"
     [formGroupName]="'credentials'">
   </app-credentials>
+
+  <app-address
+    [title]="formGroups.address.title"
+    [oFormElems]="formGroups.address.fields"
+    [formGroupName]="'address'">
+  </app-address>
+
 </form>
 
-<app-address></app-address>
 
 <app-origin></app-origin>
 

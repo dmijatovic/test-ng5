@@ -8,7 +8,7 @@ $warn: $mat-red;
 $primary-font:"Lato, sans-serif";
 
 $primary-color: mat-color($primary, 500);
-$primary-color-contrast: mat-contrast($primary, 500);;
+$primary-color-contrast: mat-contrast($primary, 500);
 
 $accent-color: mat-color($accent, 500);
 $accent-color-contrast:mat-contrast($accent, 500);
@@ -17,6 +17,8 @@ $warn-color:mat-color($warn, 500);
 $warn-color-contrast:mat-contrast($warn, 500);
 
 $border-color: mat-color($mat-grey,400);
+$border-color-contrast: mat-contrast($mat-grey,400);
+
 
 $padding-v-sm:8px 0px;
 $padding-h-sm:0px 8px;

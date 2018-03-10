@@ -1,21 +1,32 @@
 
+@import '../styles/variables';
 
 body{
   display:flex;
   flex-direction: column;
   margin:0;
   padding:0;
-  min-width:100vw;
+  min-width:100%;
   min-height:100vh;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
+
+  *{
+    box-sizing: border-box;
+  }
 }
 
-.page-body{
+.page-body, .app-body-content{
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 8px;
+}
+
+footer{
+  border: 1px solid $border-color;
+  background-color: $border-color;
+  color: $border-color-contrast;
 }
 
 

@@ -4,7 +4,7 @@
 @import './app/styles/theme';
 //basic app layout 
 @import './app/layout/layout';
-//@import './app/styles/variables';
-
 //Help module shared styles 
 @import './app/help/help';
+//User module shared styles
+@import './app/user/user.module';

@@ -1,3 +1,51 @@
-<p>
-  address works!
-</p>
+
+<h3>{{title}}</h3>
+
+<section [formGroup]="controlContainer.control">
+
+<ng-container 
+  [ngSwitch]="item.type"
+  *ngFor="let item of oFormElems">
+
+  <mat-checkbox *ngSwitchCase="'checkbox'"
+    [id]="item.name"
+    [formControlName]="item.name"
+    [required]="item.required">
+    {{item.label}}
+  </mat-checkbox>
+  
+  <mat-radio-group *ngSwitchCase="'radio'"
+    [formControlName]="item.name"
+    [required]="item.required">
+    <mat-radio-button *ngFor="let opt of item.options" 
+      [value]="opt.value">{{opt.label}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+
+  <mat-form-field *ngSwitchCase="'select'">
+    <mat-select 
+      [placeholder]="item.label"
+      [formControlName]="item.name"
+      [required]="item.required">
+      <mat-option *ngFor="let opt of item.options" 
+        [value]="opt.value">
+        {{ opt.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngSwitchDefault>
+    <input 
+      matInput 
+      [id]="item.name"
+      [type]="item.type"
+      [placeholder]="item.label"
+      [formControlName]="item.name"
+      [required]="item.required">
+    </mat-form-field>
+
+</ng-container>
+
+
+</section>
