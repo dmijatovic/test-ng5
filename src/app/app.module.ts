@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { MainPageTemplate } from './layout/main/main.component';
 
 import { OauthModule } from './oauth/oauth.module';
+import { UserService } from './oauth/user.service';
 
 //routes
 export const routes:Routes=[{
@@ -27,6 +28,7 @@ export const routes:Routes=[{
   },{
     path:'home',
     component: MainPageTemplate,
+    canActivate: [ UserService ],
     children:[{
       path:'',
       component: HomeComponent
@@ -53,7 +55,9 @@ export const routes:Routes=[{
     OauthModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,21 +9,28 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs/Observable';
 
 // Custom
-import { environment as env } from '../../../environments/environment';
+import { environment as env } from '../../environments/environment';
 import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { UserModel } from '../models/user.model';
-import { environment } from '../../../environments/environment.snbv-a';
+//import { UserModel } from '../models/user.model';
+//import { environment } from '../../../environments/environment.snbv-a';
 
 /** The user service for oAuth */
 @Injectable()
 export class UserService implements CanActivate {
 	/**
-	 * User object holding tokens and profile info use access_token property to add Bearer token into your api calls to backend server of your app
+	 * User object holding tokens and profile info use access_token property 
+	 * add Bearer token into your api calls to backend server of your app
 	 * Note! access_token information is automatically refreshed after token expire.
 	 */
-	user: UserModel = new UserModel();
+	user={
+		id_token:"",
+		access_token:"",
+		refresh_token:"",
+		profile:{},
+		claims:{}
+	}
 
 	/**
 	 * The constructor
@@ -36,11 +43,11 @@ export class UserService implements CanActivate {
 	) {
 		this.onInit();
 	}
-
 	/**
 	 * Initialize oauth2 service
 	 */
 	onInit() {
+		//debugger
 		if (env.auth["adfs"]) {
 			this.configureOauth(env.auth["adfs"]);
 			this.listenForOauthEvents();
@@ -134,6 +141,7 @@ export class UserService implements CanActivate {
 
 	/** This function is called after async login attempt is return from oauth service */
 	handleLoginAttempt() {
+		//debugger
 		//callback from oauth login attempt
 		if (!this.oauth2.hasValidIdToken() || !this.oauth2.hasValidAccessToken()) {
 			//if there is an error
@@ -165,6 +173,7 @@ export class UserService implements CanActivate {
 
 	/** This function is called from initLogin() after its confirmed that tokens are present */
 	private setTokens() {
+		debugger
 		this.user.id_token = this.oauth2.getIdToken();
 		this.user.access_token = this.oauth2.getAccessToken();
 		this.user.refresh_token = this.oauth2.getRefreshToken();
@@ -247,6 +256,10 @@ export class UserService implements CanActivate {
 	 * @param state
 	 */
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+		
+		return true;
+
+		/*
 		if (this.user.access_token == null) {
 			this.reject(state.url);
 		} else if (this.user.access_token) {
@@ -260,7 +273,7 @@ export class UserService implements CanActivate {
 			}
 		} else {
 			this.redirect('/login');
-		}
+		}*/
 	}
 
 	/**
