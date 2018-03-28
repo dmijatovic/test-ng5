@@ -1,0 +1,60 @@
+//old access token
+{
+  "typ": "JWT",
+  "alg": "RS256",
+  "x5t": "a3rMUgMFv9tPclLa6yF3zAkfquE",
+  "kid": "a3rMUgMFv9tPclLa6yF3zAkfquE"
+}
+
+//renewed access token
+{
+  "typ": "JWT",
+  "alg": "RS256",
+  "x5t": "a3rMUgMFv9tPclLa6yF3zAkfquE",
+  "kid": "a3rMUgMFv9tPclLa6yF3zAkfquE"
+}
+
+//old access token
+{
+  "iss": "https://identityserver.centerone.nl/core",
+  "aud": "https://identityserver.centerone.nl/core/resources",
+  "exp": 1513701019,
+  "nbf": 1513700899,
+  "client_id": "process-pro",
+  "scope": [
+    "openid",
+    "profile",
+    "email",
+    "read",
+    "write"
+  ],
+  "sub": "eb11af799a020dc5863d68bb5b2abd2f",
+  "auth_time": 1513697095,
+  "idp": "adfs",
+  "amr": [
+    "external"
+  ]
+}
+
+//renewed access token
+{
+  "iss": "https://identityserver.centerone.nl/core",
+  "aud": "https://identityserver.centerone.nl/core/resources",
+  "exp": 1513701140,
+  "nbf": 1513701020,
+  "client_id": "process-pro",
+  "scope": [
+    "openid",
+    "profile",
+    "email",
+    "read",
+    "write"
+  ],
+  "sub": "eb11af799a020dc5863d68bb5b2abd2f",
+  "auth_time": 1513697095,
+  "idp": "adfs",
+  "amr": [
+    "external"
+  ]
+}
+

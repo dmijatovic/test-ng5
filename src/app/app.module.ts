@@ -17,6 +17,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { MainPageTemplate } from './layout/main/main.component';
 
+import { OauthModule } from './oauth/oauth.module';
+
 //routes
 export const routes:Routes=[{
   path:'',
@@ -48,6 +50,7 @@ export const routes:Routes=[{
     UserModule,
     LayoutModule,
     SharedModule,
+    OauthModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

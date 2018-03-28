@@ -1,10 +1,12 @@
 /** Import of requrie in order to load package.json parameters */
 declare const require: any;
-/** Default environment */
+/**
+ * DEMO environement CenterOne
+ */
 export const environment = {
 	"version": require('../../package.json').version,
 	"production": false,
-	"apiEndpoint": "http://localhost:50020",
+	"apiEndpoint": "https://iis.centerone.nl/ProcessProAPI",
 	"useHash": false,
 	"auth": {
 		"method": "adfs",

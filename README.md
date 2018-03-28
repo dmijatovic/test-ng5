@@ -64,3 +64,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - street, number, postcode, country
 - group 4: origin
   - date of birth, place of birth
+
+
+## Route guards
+- npm i -s angular-oauth2-oidc
+- connect oauth module
+- 
