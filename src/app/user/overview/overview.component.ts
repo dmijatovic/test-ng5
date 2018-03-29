@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss'],
-  host:{
-    "class":"app-body-content"
-  }
+	selector: 'app-overview',
+	templateUrl: './overview.component.html',
+	styleUrls: ['./overview.component.scss'],
+	host: {
+		"class": "app-body-content"
+	}
 })
 export class OverviewComponent implements OnInit {
 	formMain: FormGroup;
@@ -58,7 +58,7 @@ export class OverviewComponent implements OnInit {
 					]
 				},
 
-	]
+			]
 		},
 		// "origin": {
 		// 	title: "Origin",
@@ -110,5 +110,21 @@ export class OverviewComponent implements OnInit {
 		});
 
 		return g;
+	}
+
+	hasUnsavedData() {
+		return true;
+	}
+
+	@HostListener('window:beforeunload', ['$event'])
+	canDeactivate($event) {
+		// debugger;
+		if (this.hasUnsavedData()) {
+			if (confirm("You have unsaved changes! If you leave, your changes will be lost.")) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

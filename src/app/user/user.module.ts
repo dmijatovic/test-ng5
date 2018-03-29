@@ -17,27 +17,28 @@ import { AddressComponent } from './address/address.component';
 import { OriginComponent } from './origin/origin.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { CanDeactivateOverview } from '../oauth/auth.guard';
 
 const routes = [{
 	path: 'user',
 	component: UserPageTemplate,
 	children: [{
 		path: '',
-		component: OverviewComponent
+		component: OverviewComponent,
+		canDeactivate: [CanDeactivateOverview],
 	}]
-
 }]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    //material
-    MatFormFieldModule, MatInputModule, MatCheckboxModule,
-    MatSelectModule,
-    MatRadioModule, 
-    ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [OverviewComponent, NameComponent, CredentialsComponent, AddressComponent, OriginComponent]
+	imports: [
+		CommonModule,
+		//material
+		MatFormFieldModule, MatInputModule, MatCheckboxModule,
+		MatSelectModule,
+		MatRadioModule,
+		ReactiveFormsModule,
+		RouterModule.forChild(routes)
+	],
+	declarations: [OverviewComponent, NameComponent, CredentialsComponent, AddressComponent, OriginComponent]
 })
 export class UserModule { }

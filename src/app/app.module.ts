@@ -19,45 +19,50 @@ import { MainPageTemplate } from './layout/main/main.component';
 
 import { OauthModule } from './oauth/oauth.module';
 import { UserService } from './oauth/user.service';
+import { AuthGuard, CanDeactivateHome, CanDeactivateOverview } from './oauth/auth.guard';
 
 //routes
-export const routes:Routes=[{
-  path:'',
-  pathMatch:'full',
-  redirectTo:'home',
-  },{
-    path:'home',
-    component: MainPageTemplate,
-    canActivate: [ UserService ],
-    children:[{
-      path:'',
-      component: HomeComponent
-    }]
-},{
-  path:'**',
-  redirectTo:'home'
+export const routes: Routes = [{
+	path: '',
+	pathMatch: 'full',
+	redirectTo: 'home',
+}, {
+	path: 'home',
+	component: MainPageTemplate,
+	canActivate: [AuthGuard],
+	children: [
+		{
+			path: '',
+			component: HomeComponent,
+			canDeactivate: [CanDeactivateHome]
+		},
+	]
+}, {
+	path: '**',
+	redirectTo: 'home'
 }]
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule, BrowserAnimationsModule,
-    Feature1Module,
-    Feature2Module,
-    HelpModule,
-    UserModule,
-    LayoutModule,
-    SharedModule,
-    OauthModule,
-    RouterModule.forRoot(routes)
-  ],
-  providers: [
-    UserService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		HomeComponent
+	],
+	imports: [
+		BrowserModule, BrowserAnimationsModule,
+		Feature1Module,
+		Feature2Module,
+		HelpModule,
+		UserModule,
+		LayoutModule,
+		SharedModule,
+		OauthModule,
+		RouterModule.forRoot(routes)
+	],
+	providers: [
+		UserService,
+		AuthGuard, CanDeactivateHome,CanDeactivateOverview,
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

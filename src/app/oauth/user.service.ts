@@ -20,7 +20,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class UserService implements CanActivate {
 	/**
-	 * User object holding tokens and profile info use access_token property 
+	 * User object holding tokens and profile info use access_token property
 	 * add Bearer token into your api calls to backend server of your app
 	 * Note! access_token information is automatically refreshed after token expire.
 	 */
@@ -41,7 +41,7 @@ export class UserService implements CanActivate {
 		private oauth2: OAuthService,
 		private router: Router
 	) {
-		this.onInit();
+		// this.onInit();
 	}
 	/**
 	 * Initialize oauth2 service
@@ -67,7 +67,7 @@ export class UserService implements CanActivate {
 		} else {
 			console.error("User.Service: no ADFS definitions present in environment file!");
 			console.error("User.Service: check Angular environment file for [auth.adfs] definitions!");
-			this.setLoggedIn('error');
+			this.setLoggedIn('No ADFS definitions present');
 		}
 	}
 
@@ -173,7 +173,6 @@ export class UserService implements CanActivate {
 
 	/** This function is called from initLogin() after its confirmed that tokens are present */
 	private setTokens() {
-		debugger
 		this.user.id_token = this.oauth2.getIdToken();
 		this.user.access_token = this.oauth2.getAccessToken();
 		this.user.refresh_token = this.oauth2.getRefreshToken();
@@ -256,7 +255,7 @@ export class UserService implements CanActivate {
 	 * @param state
 	 */
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		
+
 		return true;
 
 		/*
