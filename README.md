@@ -69,4 +69,31 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Route guards
 - npm i -s angular-oauth2-oidc
 - connect oauth module
-- insert user.service 
+- insert user.service into a router
+- implement folowing guards
+  - canActivate
+  - canDeactivate
+  - canLoad (?)
+  - canActivatChldren(?)
+
+
+### OauthModule
+Uses angular-oauth2-oidc for ADFS authentication.
+
+#### UserService (user.service.ts)
+Authentication proces is stated by user.service.onInit() function. Process is as follows:
+
+- <b>loadDiscoveryDocument</b>: it can be automatically downloaded based on ADFS info defined in environment.ts. OR it can be manually downloaded (Schiphol case). Discovery document contains ADFS server specific definitions required to handle a login attempt. In combination with the settings provided in environment file this is complete information that needed for app to be able to handle login attempt according to OIDC and implicitFlow 'protocol'
+
+- <b>handleLoginAttempt</b>: after discovery document is loaded the login process is started according to implicitFlow. This function starts with the check if user already has valid token and is split in two parts. 
+  - No valid token: The authentication process is just stared. The user is redirected to ADFS login page. In case of 'deep' linking 'desired' url is passed to ADFS server usign function oauth2.initImplicitFlow(url).
+  - hasValidToken: if user has valid token it means that user completed login via ADFS server and is redirected back to out app. In that case we can procees with app internal process, like saving token and profile information received from ADFS server. And we can redirect user to proper page in case of deep linking.
+
+- loggedIn$ observable subject and setLoggedIn: 
+
+- silentRefresh: there is support for silentrefresh using iframe in file silent_renew.html. This file needs to be places in root of the app.
+
+
+
+     
+
