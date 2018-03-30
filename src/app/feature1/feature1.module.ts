@@ -1,22 +1,30 @@
+//angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+//material
+import { MatTabsModule, MatIconModule } from '@angular/material';
+//app modules
+import { LayoutModule } from '../layout/layout.module';
+import { SharedModule } from '../shared/shared.module';
+//components
 import { Feature1aComponent } from './feature1a/feature1a.component';
 import { Feature1bComponent } from './feature1b/feature1b.component';
-
-import { Routes, RouterModule } from '@angular/router';
 import { Tab1Component } from './feature1a/tab1/tab1.component';
 import { Tab2Component } from './feature1a/tab2/tab2.component';
 import { Tab3Component } from './feature1a/tab3/tab3.component';
-
 import { ViewComponent } from './feature1b/view/view.component';
 import { EditComponent } from './feature1b/edit/edit.component'
 
-import { SharedModule } from '../shared/shared.module';
 
 const routes=[{
-  path:'f1a',
+  path:'1a',
   component: Feature1aComponent,
   children:[{
+    path:'',
+    pathMatch: 'full',
+    redirectTo:'tab1',
+  },{
     path:'tab1',
     component: Tab1Component
   },{
@@ -27,27 +35,29 @@ const routes=[{
     component: Tab3Component
   }]
 },{
-  path:'f1b',
-  redirectTo:'f1b/overview'
+  path:'1b',
+  redirectTo:'1b/overview'
 },{
-  path:'f1b/overview',
-  component: Feature1bComponent, 
+  path:'1b/overview',
+  component: Feature1bComponent,
 },{
-  path:'f1b/view',
-  component: ViewComponent, 
+  path:'1b/view',
+  component: ViewComponent,
 },{
-  path:'f1b/edit',
-  component: EditComponent, 
+  path:'1b/edit',
+  component: EditComponent,
 }]
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
+    LayoutModule,
+    MatTabsModule, MatIconModule,
     RouterModule.forChild(routes)
   ],
   declarations: [
-    Feature1aComponent, Feature1bComponent, Tab1Component, 
+    Feature1aComponent, Feature1bComponent, Tab1Component,
     Tab2Component, Tab3Component, ViewComponent, EditComponent
   ]
 })

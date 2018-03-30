@@ -1,16 +1,28 @@
-<p>
+<header class="page-title">
   feature1a works!
-</p>
+</header>
 
-<button routerLink="tab1">Tab1</button>
-<button routerLink="tab2">Tab2</button>
-<button routerLink="tab3">Tab3</button>
+<section class="page-tab-nav">
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+      <mat-icon>{{link.mdIcon}}</mat-icon>
+      <span class="tab-label">{{link.label}}</span>
+    </a>
+  </nav>
+</section>
 
-<div class="title">
-  {{title}}
-</div>
-<div class="teller">
-  {{count}}
-</div>
-  
+<section>
+  <div class="title">
+    {{title}}
+  </div>
+  <div class="teller">
+    {{count}}
+  </div>
+</section>
+
 <router-outlet></router-outlet>
+

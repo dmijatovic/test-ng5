@@ -14,7 +14,7 @@ export class Feature1Service {
   OnUpDownReset = new Subject();
   OnUpDownReset$ = this.OnUpDownReset.asObservable();
   setOnUpDownReset(num){
-    this.OnUpDownReset.next(num);    
+    this.OnUpDownReset.next(num);
   }
 
   tab1cnt=0;
@@ -30,3 +30,18 @@ export class Feature1Service {
     return this.tab1cnt;
   }
 }
+
+
+export const navLinks=[{
+  path:'tab1',
+  label:'Tab 1',
+  mdIcon:'home'
+},{
+  path:'tab2',
+  label:'Tab 2',
+  mdIcon:'help'
+},{
+  path:'tab3',
+  label:'Tab 3',
+  mdIcon:'info'
+}]
