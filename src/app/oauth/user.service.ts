@@ -32,7 +32,7 @@ export class UserService {
 		refresh_token:"",
 		profile:{},
 		claims:{}
-	}
+  }
 	/**
 	 * The constructor
 	 * @param oauth2 reference to the oAuth service
@@ -53,16 +53,13 @@ export class UserService {
 			this.configureOauth(env.auth["adfs"]);
 			this.listenForOauthEvents();
 			if (env.auth["discoveryDocumentUrl"]) {
-				// console.debug("discoveryDocumentUrl: " + env.auth["discoveryDocumentUrl"]);
-				this.oauth2.loadDiscoveryDocument(env.auth["discoveryDocumentUrl"]).then(() => {
-					this.oauth2.tryLogin().then(() => {
-						this.handleAccessAttempt();
-					});
-				});
+        //discovery document is specified in env file
+        //because it cannot be automatically loaded
+				this.manualDiscoveryAndLogin();
 			} else {
-				this.oauth2.loadDiscoveryDocumentAndTryLogin().then(() => {
-					this.handleAccessAttempt();
-				});
+        //automatically download discovery document
+        //AND proceed to login process
+        this.autoDiscoveryAndLogin();
 			}
 		} else {
 			console.error("User.Service: no ADFS definitions present in environment file!");
@@ -77,7 +74,6 @@ export class UserService {
 	getUserProfile() {
 		return this.profile;
 	}*/
-
 	/**
 	 * Configure oauth service
 	 * @param authConfig {AuthConfig} (angular-oauth2-oidc)
@@ -87,7 +83,49 @@ export class UserService {
 		this.oauth2.configure(authConfig);
 		//initialize token validation handler (?)
 		this.oauth2.tokenValidationHandler = new JwksValidationHandler();
-	}
+  }
+  /**
+   * Discovery document cannot be automatically loaded from ADFS
+   * therefore we provide url where discovery document can be found
+   * usually this is not same domain/url of ADFS server
+   */
+  manualDiscoveryAndLogin(){
+    // console.debug("discoveryDocumentUrl: " + env.auth["discoveryDocumentUrl"]);
+    this.oauth2.loadDiscoveryDocument(env.auth["discoveryDocumentUrl"])
+    .then((d) => {
+      if (d){
+        console.log("manualDiscoveryDocument...OK");
+        return this.oauth2.tryLogin();
+      }else{
+        debugger
+        throw "manualDiscoveryDocument...FAILED";
+      }
+    })
+    .then(()=>{
+      //debugger
+      console.log("manualTryLogin...OK");
+      this.handleAccessAttempt();
+    })
+    .catch((e)=>{
+      console.error("manualDiscoveryAndLogin...FAILED...", e);
+      this.setLoggedIn("ADFS authentication failed");
+    });
+  }
+  /**
+   * Automatically load discovery document from ADFS server
+   * and immeditally proceed to login process
+   */
+  autoDiscoveryAndLogin(){
+    this.oauth2.loadDiscoveryDocumentAndTryLogin()
+    .then(() => {
+      console.error("loadDiscoveryDocumentAndTryLogin...OK");
+      this.handleAccessAttempt();
+    })
+    .catch((e)=>{
+      console.error("autoDiscoveryAndLogin...FAILED...", e);
+      this.setLoggedIn("ADFS authentication failed");
+    });
+  }
 	/**
    * This function is called by onInit and will be used twice:
    * 1. At initialization to start implicit flow
@@ -102,7 +140,7 @@ export class UserService {
 			if (window.location.href.indexOf("/error/") > -1) {
         //just do nothing if we send user to error route/pages
         console.log(`
-          user.service.handleLoginAttempt...
+          handleLoginAttempt...
           alowed access to error route(s) without authentication
         `);
 			} else {
@@ -121,14 +159,14 @@ export class UserService {
    * property(see line 184) -> this.oauth2.initImplicitFlow(this.router.url);
    */
   private initImplicitFlow(){
-    //debugger
     /*
     Note! we use pure JS to extract route for 'deep linking' because router is
     disabled (not to react to ADFS redirects). In addition if the route guards (canActivate)
     are present we are not able to extract complete url before user is authenticated
     */
     let url = window.location.pathname;
-    console.log("user.service.initImplicitFlow...start ADFS authentication");
+    //debugger
+    console.log("initImplicitFlow...start ADFS authentication");
     //start redirect
     this.oauth2.initImplicitFlow(url);
   }
@@ -137,10 +175,11 @@ export class UserService {
    */
   private handleAuthenticatedUser(){
     //debugger
-    console.log("user.service.handleAuthenticatedUser...start");
+    //console.log("user.service.handleAuthenticatedUser...start");
     //We received tokens let save these localy
     this.setTokens();
     //check if passed an url for deep linking
+    //ONLY if not silent refresh
     this.setInitRoute();
   }
 	/**
@@ -153,14 +192,14 @@ export class UserService {
       this.user.id_token = this.oauth2.getIdToken();
       this.user.access_token = this.oauth2.getAccessToken();
       this.user.refresh_token = this.oauth2.getRefreshToken();
-      console.log("user.service.setTokens...done");
+      console.log("setTokens...OK");
       // after tokes are loaded
       // we set loggedIn flag to true
       this.setLoggedIn(true);
     }catch(e){
       //in case of any error
       //we set loggedIn to false
-      console.warn("user.service.setTokens...FAILED");
+      console.warn("setTokens...FAILED");
       this.setLoggedIn(false);
     }
   }
@@ -177,7 +216,6 @@ export class UserService {
     if (this.oauth2.state){
       //get url from oauth state
       url = this.oauth2.state;
-      console.log("user.service.deepLinking...", url);
     }else{
       //we use window location here because
       //angular router might not be active
@@ -185,13 +223,8 @@ export class UserService {
       //avoid interference with ADFS redirects
       debugger
       url = window.location.pathname;
-      if (url!="/"){
-        console.log("user.service.deepLinking...", url);
-      }else{
-        console.log("user.service.deepLinking...NO");
-      }
     }
-    //activate router by navigation
+    console.log("setInitRoute...", url);
     this.router.navigate([url]);
   }
   /*
@@ -233,6 +266,9 @@ export class UserService {
 	 * @param action
 	 */
 	reducer(action) {
+    //log events from oauth
+    //console.log("user.service.oauth2.event...", action.type);
+    //decide on action
 		switch (action.type.toLowerCase()) {
 			case "received_first_token":
 				break;
@@ -245,17 +281,19 @@ export class UserService {
 			case "discovery_document_load_error":
 			case "discovery_document_validation_error":
 			case "session_error":
-				this.removeUser();
-				this.router.navigate(['error', '403']);
+				//this.removeUser();
+        //this.router.navigate(['error', '403']);
+        this.logout();
 				break;
 			case "token_expires":
 				//perform silent refresh
-				//no need it does autmatically
-				this.silentRefresh();
+				//no need it does automatically
+        this.silentRefresh();
 				break;
 			case "silent_refresh_error":
-				//silent token refresh failed
-				this.router.navigate(['error', '500']);
+        //silent token refresh failed
+        this.logout();
+				//this.router.navigate(['error', '500']);
 				break;
 			case "user_profile_loaded":
 				//now we can redirect to home
@@ -281,7 +319,7 @@ export class UserService {
 	 * @param state {boolean | string} The new loggedin state
 	 */
 	setLoggedIn(state: boolean | string) {
-    console.log("user.service.setLoggedIn...", state);
+    console.log("setLoggedIn...", state);
 		this.LoggedIn = state;
 		this.loggedIn.next(state);
 	}
@@ -311,18 +349,28 @@ export class UserService {
 		return h;
 	}
 
-	/** Refreshing a Token when using Implicit Flow */
+	/** Refreshing a Token when using Implicit Flow
+   * NOTE! this function requires silent_renew.html file
+   * placed in the 'root'of the project next to index.html
+  */
 	silentRefresh() {
+    console.log("silentRefresh...started");
 		this.oauth2.silentRefresh().then((event) => {
+      //debugger
+      console.log("silentRefresh...OK");
 			//check for # in URL
 			if (location.href.indexOf("#") > -1) {
+        //debugger
+        console.log("silentRefresh...remove #");
 				//remove # after silent refresh - fix for IE and EDGE
-				history.replaceState("", "", location.href.replace("#", ""))
+        history.replaceState("", "", location.href.replace("#",""));
 			}
 			//refresh tokens in user object
 			this.setTokens();
 		}).catch((e) => {
-			console.error("silent refresh failed...", e);
+      debugger
+      console.error("silentRefresh...FAILED...", e);
+      this.logout();
 		});
 	}
 
@@ -333,6 +381,11 @@ export class UserService {
 
 	/** This function is called on logout event */
 	removeUser() {
-		this.user = { id_token: null, access_token: null, refresh_token: null, profile: null, claims: null };
+		this.user = {
+      id_token: null,
+      access_token: null,
+      refresh_token: null,
+      profile: null, claims: null
+    };
 	}
 }

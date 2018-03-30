@@ -16,10 +16,13 @@ import { Tab3Component } from './feature1a/tab3/tab3.component';
 import { ViewComponent } from './feature1b/view/view.component';
 import { EditComponent } from './feature1b/edit/edit.component'
 
+import { AuthGuard } from '../oauth/auth.guard';
 
 const routes=[{
   path:'1a',
   component: Feature1aComponent,
+  canActivate:[ AuthGuard ],
+  data: { permission: 'app.feature1' },
   children:[{
     path:'',
     pathMatch: 'full',
