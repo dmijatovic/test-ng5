@@ -221,7 +221,6 @@ export class UserService {
       //angular router might not be active
       //we set initalNavigation = false to
       //avoid interference with ADFS redirects
-      debugger
       url = window.location.pathname;
     }
     console.log("setInitRoute...", url);

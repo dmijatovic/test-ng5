@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
-  Router,
-	ActivatedRouteSnapshot,
-	RouterStateSnapshot,
-	CanActivate, CanDeactivate,
-	CanActivateChild
+  //Router,
+	ActivatedRouteSnapshot, RouterStateSnapshot,
+	CanActivate, CanDeactivate, CanActivateChild
 } from '@angular/router';
+
+//RxJs
+import 'rxjs/add/operator/takeWhile';
+
 
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
@@ -13,10 +15,12 @@ import { UserService } from './user.service';
 /** The user service for oAuth */
 @Injectable()
 export class AuthGuard implements CanActivate {
+  //subscription flag
+  subscribe:boolean=true;
 	constructor(
 		private user: UserService,
-		private router: Router
-	) {
+		//private router: Router
+	){
 		console.log("auth.guard...started");
 	}
 	/**
@@ -25,16 +29,20 @@ export class AuthGuard implements CanActivate {
 	 * @param state
 	 */
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    //debugger;
     /*
 		console.group("auth.guard.canActivate");
 		console.log("next...", next);
 		console.log("state...", state);
     console.groupEnd();
     */
+    //debugger;
 		return new Promise((res, rej) => {
       //subscribe to loggedIn state
-			this.user.loggedIn$.subscribe(loggedInState => {
+      this.user.loggedIn$
+      //unsubscribe when first true arrives
+      //otherwise we arive here during silent_refresh
+      .first(loggedInState => loggedInState == true)
+      .subscribe(loggedInState => {
 				//debugger;
 				if (loggedInState == true) {
           console.log(`auth.guard.canActivate...${state.url}...true`);
