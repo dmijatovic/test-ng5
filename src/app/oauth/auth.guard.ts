@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-	Router,
+  Router,
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,
 	CanActivate, CanDeactivate,
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
 		private user: UserService,
 		private router: Router
 	) {
-		console.log("AuthGuard..started");
+		console.log("auth.guard...started");
 	}
 	/**
 	 *
@@ -25,25 +25,29 @@ export class AuthGuard implements CanActivate {
 	 * @param state
 	 */
 	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-		// debugger;
-		console.group("canActivate");
+    //debugger;
+    /*
+		console.group("auth.guard.canActivate");
 		console.log("next...", next);
 		console.log("state...", state);
-		console.groupEnd();
+    console.groupEnd();
+    */
 		return new Promise((res, rej) => {
-			// setTimeout(e => {
+      //subscribe to loggedIn state
 			this.user.loggedIn$.subscribe(loggedInState => {
-				// debugger;
+				//debugger;
 				if (loggedInState == true) {
+          console.log(`auth.guard.canActivate...${state.url}...true`);
 					res(true);
 				} else if (loggedInState == false) {
-					console.log("Waiting for valid response from the auth server");
-					this.user.onInit();
+					console.log("auth.guard.canActivate...Init ADFS login process");
+          this.user.onInit();
+          //this.router.initialNavigation = false;
 				} else if (typeof loggedInState == 'string') {
+          console.log("auth.guard.canActivate...error...", loggedInState);
 					rej(loggedInState);
 				}
 			});
-			// }, 5000);
 		});
 	}
 }

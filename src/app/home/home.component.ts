@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		console.log("router...", this.router);
+		//console.log("router...", this.router);
 	}
 	onOneUpDownReset(num) {
 		console.log("number...", num);

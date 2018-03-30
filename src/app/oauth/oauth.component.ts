@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * dummy component to capture redirect from 
+ * dummy component to capture redirect from
  * ADFS server (just for debuggin purposes)
  */
 @Component({
@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OauthComponent implements OnInit{
   constructor(){
-    //debugger
+    debugger
     //get credentials from hash
     /*
     let cred = window.location.hash;

@@ -10,21 +10,22 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
 //App user service
 import { UserService } from './user.service';
-//Why is this here? It should work without home component.
-//import { HomeComponent } from '../../layout/home/home.component';
 
+/* not required
 //'dummy' component to capture redirect from
 //ADFS server (just for debuggin purposes)
-//import { OauthComponent } from './oauth.component';
-/*
+import { OauthComponent } from './oauth.component';
 const routes: Routes = [{
 	// Request from ADFS server is forwarded to this path
 	path: 'index.html',
 	component: OauthComponent,
 	pathMatch: 'full'
-}]*/
+}] */
 
 @NgModule({
+  declarations:[
+    //OauthComponent
+  ],
 	imports: [
 		CommonModule,
 		HttpClientModule,

@@ -18,6 +18,7 @@ import { Feature2Module } from './feature2/feature2.module'
 import { HelpModule } from './help/help.module';
 import { UserModule } from './user/user.module';
 
+//Authentication
 import { OauthModule } from './oauth/oauth.module';
 import { UserService } from './oauth/user.service';
 import {
@@ -30,14 +31,14 @@ export const routes: Routes = [{
   path: '',
   pathMatch: 'full',
   redirectTo: 'home',
-}, {
+},{
   path: 'home',
   component: MainPageTemplate,
-  //canActivate: [AuthGuard],
+  canActivate: [AuthGuard],
   children: [{
     path: '',
     component: HomeComponent,
-    canDeactivate: [CanDeactivateHome]
+    canDeactivate: [ CanDeactivateHome ]
   }]
 },{
   path: "feature1",
@@ -47,6 +48,15 @@ export const routes: Routes = [{
   path: '**',
   redirectTo: 'error/404'
 }]
+
+const routerConfig={
+  //enable loging of router event
+  //enableTracing: true,
+  //dissable initial navigation
+  //in order to support ADFS redirect
+  //to index.html#id_token....
+  initialNavigation: false
+}
 
 
 @NgModule({
@@ -64,12 +74,14 @@ export const routes: Routes = [{
     LayoutModule,
     SharedModule,
     OauthModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(
+      routes, routerConfig
+    )
   ],
   providers: [
-    UserService,
-    AuthGuard, CanDeactivateHome, CanDeactivateOverview,
+    UserService, AuthGuard,
+    CanDeactivateHome, CanDeactivateOverview
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
