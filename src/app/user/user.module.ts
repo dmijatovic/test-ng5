@@ -17,7 +17,7 @@ import { AddressComponent } from './address/address.component';
 import { OriginComponent } from './origin/origin.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { CanDeactivateOverview } from '../oauth/auth.guard';
+import { CanDeactivateOverview } from '../oauth2/auth.guard';
 
 const routes = [{
 	path: 'user',

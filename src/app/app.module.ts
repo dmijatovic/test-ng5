@@ -19,12 +19,12 @@ import { HelpModule } from './help/help.module';
 import { UserModule } from './user/user.module';
 
 //Authentication
-import { OauthModule } from './oauth/oauth.module';
-import { UserService } from './oauth/user.service';
+import { Oauth2Module } from './oauth2/oauth2.module';
+import { OidcClientService } from './oauth2/oidc.client.svc';
 import {
   AuthGuard, CanDeactivateHome,
   CanDeactivateOverview
-} from './oauth/auth.guard';
+} from './oauth2/auth.guard';
 
 //routes
 export const routes: Routes = [{
@@ -55,7 +55,7 @@ const routerConfig={
   //dissable initial navigation
   //in order to support ADFS redirect
   //to index.html#id_token....
-  initialNavigation: false
+  initialNavigation: true
 }
 
 
@@ -73,13 +73,13 @@ const routerConfig={
     UserModule,
     LayoutModule,
     SharedModule,
-    OauthModule,
+    Oauth2Module,
     RouterModule.forRoot(
       routes, routerConfig
     )
   ],
   providers: [
-    UserService, AuthGuard,
+    OidcClientService, AuthGuard,
     CanDeactivateHome, CanDeactivateOverview
   ],
   bootstrap: [ AppComponent ]

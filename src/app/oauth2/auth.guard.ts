@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  //Router,
+  Router,
 	ActivatedRouteSnapshot, RouterStateSnapshot,
 	CanActivate, CanDeactivate, CanActivateChild
 } from '@angular/router';
@@ -8,9 +8,7 @@ import {
 //RxJs
 import 'rxjs/add/operator/takeWhile';
 
-
-import { Component } from '@angular/core';
-import { UserService } from './user.service';
+import { OidcClientService } from './oidc.client.svc';
 
 /** The user service for oAuth */
 @Injectable()
@@ -18,8 +16,8 @@ export class AuthGuard implements CanActivate {
   //subscription flag
   subscribe:boolean=true;
 	constructor(
-		private user: UserService,
-		//private router: Router
+		private oidc: OidcClientService,
+		private router: Router
 	){
 		console.log("auth.guard...started");
 	}
@@ -28,36 +26,29 @@ export class AuthGuard implements CanActivate {
 	 * @param next
 	 * @param state
 	 */
-	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+	canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     /*
 		console.group("auth.guard.canActivate");
 		console.log("next...", next);
 		console.log("state...", state);
     console.groupEnd();
-    */
-    //debugger;
-		return new Promise((res, rej) => {
-      //subscribe to loggedIn state
-      this.user.loggedIn$
-      //unsubscribe when first true arrives
-      //otherwise we arive here during silent_refresh
-      .first(loggedInState => loggedInState == true)
-      .subscribe(loggedInState => {
-				//debugger;
-				if (loggedInState == true) {
-          console.log(`auth.guard.canActivate...${state.url}...true`);
-					res(true);
-				} else if (loggedInState == false) {
-					console.log("auth.guard.canActivate...Init ADFS login process");
-          this.user.onInit();
-          //this.router.initialNavigation = false;
-				} else if (typeof loggedInState == 'string') {
-          console.log("auth.guard.canActivate...error...", loggedInState);
-					rej(loggedInState);
-				}
-			});
-		});
-	}
+    *///debugger
+    if (this.oidc.user){
+      //check if access token expired
+      if (this.oidc.user.expired){
+        console.warn("canActivate...user token expired...");
+        return false;
+      }else{
+        console.log("canActivate...", state.url, "...true");
+        return true;
+      }
+    }else{
+      console.log("canActivate...", state.url, "...startAuthentication");
+      //we do not have user so start authentication process
+      this.oidc.startAuthentication(state.url);
+      return false;
+    }
+  }
 }
 
 /** The user service for canDeactivate homepage */

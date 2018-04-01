@@ -1,12 +1,14 @@
-
-<body>
+<html>
+<head>
   <script src="oidc-client.min.js"></script>
+</head>
+<body>
   <script>
-    debugger
-    new Oidc.UserManager().signinSilentCallback()
+    new UserManager().signinSilentCallback()
     .catch((e)=>{
       console.error(e);
     });
   </script>
 </body>
 
+</html>

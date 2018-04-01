@@ -16,7 +16,7 @@ import { Tab3Component } from './feature1a/tab3/tab3.component';
 import { ViewComponent } from './feature1b/view/view.component';
 import { EditComponent } from './feature1b/edit/edit.component'
 
-import { AuthGuard } from '../oauth/auth.guard';
+import { AuthGuard } from '../oauth2/auth.guard';
 
 const routes=[{
   path:'1a',

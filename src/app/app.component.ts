@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { UserService } from './oauth/user.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,11 +7,6 @@ import { UserService } from './oauth/user.service';
 })
 export class AppComponent {
   title = 'app';
-  constructor(
-    private user: UserService
-  ){}
-  ngOnInit(){
-    //initialize adfs authenitication process
-    this.user.onInit();
-  }
+  constructor(){}
+  ngOnInit(){}
 }
