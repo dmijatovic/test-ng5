@@ -2,11 +2,12 @@
 <body>
   <script src="oidc-client.min.js"></script>
   <script>
-    debugger
-    new Oidc.UserManager().signinSilentCallback()
-    .catch((e)=>{
-      console.error(e);
-    });
+    try{
+      //debugger
+      new Oidc.UserManager().signinSilentCallback();
+    } catch(e){
+      console.error("silent_renew...", e);
+    };
   </script>
 </body>
 
