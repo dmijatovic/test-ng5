@@ -2,12 +2,12 @@
   feature1b overview works!
 </p>
 
-<table>
+<table appSort (colSortChange)="chageSort($event)" >
   <tr>
     <th *ngFor="let col of columns">
       <app-col-sort
         [colName]="col.name"
-        (colSort)="sortColumn($event)">
+        [direction]="col.sort">
       </app-col-sort>
     </th>
   </tr>

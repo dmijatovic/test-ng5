@@ -4,7 +4,7 @@ import { RandomData } from '../../shared/rdd.svc';
 
 const data={
   columns:[
-    { id:'col1', name:'Col 1', sort:'', type:'string' },
+    { id:'col1', name:'Col 1', sort:'asc', type:'string' },
     { id:'col2', name:'Col 2', sort:'', type:'date' },
     { id:'col3', name:'Col 3', sort:'', type:'float', treshold:20000 },
     { id:'col4', name:'Col 4', sort:'', type:'integer', treshold:50000 }

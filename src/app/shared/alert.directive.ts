@@ -10,15 +10,16 @@ export class AlertDirective implements OnChanges {
   constructor(
     private el:ElementRef
   ){
-    console.log("AlertDirective...started");
+    //console.log("AlertDirective...started");
   }
   /**
    * apply warning class to element if condition satisfied
    */
   ngOnInit(){
+    /*
     console.log("AlertDirective...onInit..."
       //, this.colDef, this.cellValue
-    );
+    );*/
     this.applyWarning();
   }
   applyWarning(){

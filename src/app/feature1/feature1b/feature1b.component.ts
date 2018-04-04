@@ -49,9 +49,19 @@ export class Feature1bComponent implements OnInit {
   getDataParallel(){
     console.log("Paralel data");
   }
-
-  sortColumn(dir){
-    console.log("sort...", dir);
+  /**
+   * Emitted by AppColSort component
+   * @param col
+   */
+  sortColumn(col){
+    console.log("Feature1bComponent...sortColumn...", col);
+  }
+  /**
+   * Emitted by AppSort directive
+   * @param col
+   */
+  chageSort(col){
+    console.log("Feature1bComponent...chageSort...", col);
   }
 
 }

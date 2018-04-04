@@ -11,7 +11,7 @@ export class HoverDirective {
   constructor(
     private el:ElementRef
   ){
-    console.log("HoverDirective...started");
+    //console.log("HoverDirective...started");
   }
 
   onMouseEnter(e){
