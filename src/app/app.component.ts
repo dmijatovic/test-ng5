@@ -14,6 +14,6 @@ export class AppComponent {
   ){}
   ngOnInit(){
     //initialize adfs authenitication process
-    this.user.onInit();
+    //this.user.onInit();
   }
 }

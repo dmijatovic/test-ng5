@@ -1,0 +1,16 @@
+
+@import '../styles/variables';
+
+.custom-hover-class{
+  color: $accent-color;
+  cursor: default;
+}
+
+
+.custom-alert-class{
+  color: $warn-color;
+}
+
+.custom-alert-class:after{
+  content: "!!!",
+}

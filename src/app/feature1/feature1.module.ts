@@ -21,7 +21,7 @@ import { AuthGuard } from '../oauth/auth.guard';
 const routes=[{
   path:'1a',
   component: Feature1aComponent,
-  canActivate:[ AuthGuard ],
+  //canActivate:[ AuthGuard ],
   data: { permission: 'app.feature1' },
   children:[{
     path:'',

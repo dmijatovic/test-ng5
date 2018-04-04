@@ -2,9 +2,11 @@
 
 //custom material theme
 @import './app/styles/theme';
-//basic app layout 
+//basic app layout
 @import './app/layout/layout';
-//Help module shared styles 
+//Help module shared styles
 @import './app/help/help';
 //User module shared styles
 @import './app/user/user.module';
+//Shared components styles
+@import './app/shared/shared.module';

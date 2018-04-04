@@ -34,7 +34,7 @@ export const routes: Routes = [{
 },{
   path: 'home',
   component: MainPageTemplate,
-  canActivate: [AuthGuard],
+  //canActivate: [AuthGuard],
   children: [{
     path: '',
     component: HomeComponent,
@@ -52,10 +52,11 @@ export const routes: Routes = [{
 const routerConfig={
   //enable loging of router event
   //enableTracing: true,
+  //WHEN USING canActivate
   //dissable initial navigation
   //in order to support ADFS redirect
   //to index.html#id_token....
-  initialNavigation: false
+  initialNavigation: true
 }
 
 
