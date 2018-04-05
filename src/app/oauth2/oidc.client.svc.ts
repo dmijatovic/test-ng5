@@ -129,22 +129,23 @@ export class OidcClientService {
     }
   }
   setEntryUrl(entryUrl:string){
-    if (sessionStorage){
+    if (localStorage){
       let key = env.auth.adfs.clientId + ".entryUrl";
-      sessionStorage.setItem(
+      localStorage.setItem(
         key,
         entryUrl
       );
       console.log("setEntryUrl...", entryUrl);
     }else{
-      console.warn("sessionStorage...not available!");
+      alert("Local storage");
+      console.warn("localStorage...not available!");
     }
   }
   getEntryUrl(){
     let entryUrl="/";
-    if (sessionStorage){
+    if (localStorage){
       let key = env.auth.adfs.clientId + ".entryUrl";
-      let url = sessionStorage.getItem(key);
+      let url = localStorage.getItem(key);
       if (url){
         entryUrl = url;
       }
@@ -162,6 +163,7 @@ export class OidcClientService {
     .then(user => {
       //debugger
       let url = this.getEntryUrl();
+      alert("CompleteAuthentication..." + url);
       //for now just go home
       if (url){
         console.log("completeAuthentication...navigate...", url);
