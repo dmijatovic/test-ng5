@@ -266,14 +266,15 @@ export class UserService {
 	 */
 	reducer(action) {
     //log events from oauth
-    //console.log("user.service.oauth2.event...", action.type);
+    console.log("user.service.oauth2.event...", action.type);
     //decide on action
 		switch (action.type.toLowerCase()) {
 			case "received_first_token":
 				break;
 			case "token_received":
 				break;
-			//all kind of errors
+      //all kind of errors
+      case "invalid_nonce_in_state":
 			case "token_refresh_error":
 			case "token_validation_error":
 			case "jwks_load_error":
