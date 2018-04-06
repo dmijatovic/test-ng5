@@ -163,7 +163,7 @@ export class OidcClientService {
     .then(user => {
       //debugger
       let url = this.getEntryUrl();
-      alert("CompleteAuthentication..." + url);
+      //alert("CompleteAuthentication..." + url);
       //for now just go home
       if (url){
         console.log("completeAuthentication...navigate...", url);
