@@ -94,6 +94,11 @@ Authentication proces is stated by user.service.onInit() function. Process is as
 - silentRefresh: there is support for silentrefresh using iframe in file silent_renew.html. This file needs to be places in root of the app.
 
 
+## Directives
+
+1. Create alert directive as part of shared module. Alert directive has 2 inputs: colDef and cellValue. Implement alert directive on feature 1b page table. Use feature 1b service and column definitions provided in the service. If the value is below treshold the cell should have "custom-alert-class". All info is avaliable in the service file.
+
+2. Create hover directive as part of shared module. On mouse enter element should get class "custom-hover-class". On mouse leave the class should be removed.
 
      
 
