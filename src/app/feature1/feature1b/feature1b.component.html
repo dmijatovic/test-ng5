@@ -17,7 +17,7 @@
       appAlert
       [colDef]="col"
       [cellValue]="rec[col.id]">
-      {{rec[col.id]}}
+      {{rec[col.id] | formatColVal:col }}
     </td>
   </tr>
 </table>

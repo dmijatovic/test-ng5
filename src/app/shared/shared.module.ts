@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
+
 import { CounterComponent } from './counter/counter.component';
 import { AppSortDirective, AppColSort } from './sort.directive';
 import { HoverDirective } from './hover.directive';
@@ -9,7 +11,7 @@ import { AlertDirective } from './alert.directive';
 
 
 import { SortService } from './sort.service';
-import { FormatValPipe } from './format-val.pipe';
+import { FormatColVal } from './format-col-val.pipe';
 
 @NgModule({
   imports: [
@@ -17,12 +19,12 @@ import { FormatValPipe } from './format-val.pipe';
   ],
   declarations: [
     CounterComponent, AppSortDirective, AppColSort,
-    HoverDirective, AlertDirective, FormatValPipe
+    HoverDirective, AlertDirective, FormatColVal
   ],
   exports:[
     CounterComponent, AppSortDirective, AppColSort,
-    HoverDirective, AlertDirective
+    HoverDirective, AlertDirective, FormatColVal
   ],
-  //providers:[ SortService ]
+  providers:[ DatePipe ]
 })
 export class SharedModule { }

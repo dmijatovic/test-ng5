@@ -100,5 +100,22 @@ Authentication proces is stated by user.service.onInit() function. Process is as
 
 2. Create hover directive as part of shared module. On mouse enter element should get class "custom-hover-class". On mouse leave the class should be removed.
 
-     
+### Pipes
 
+- Create pipe ib the shared module using ng cli.
+
+```JavaSctipt
+ng g p shared/formatColVal
+
+```
+
+- Add pipe to shared module exports.
+- Use pipe in feature1b table (feature1b component)
+- Test pipe by consol-logging value and args
+- Pass col as argument to formatColVal pipe
+- Write pipe function to format value based on col type information
+  - include date pipe from angular
+  - include formatNumber function from util in 'app.config.ts' file
+  - create switch function based on col.type and apply string, date, float, integer and currency formatting. See feature1bservice for props available in column.
+  - implement 'n/a' for null values independent of col.type
+  - in all 'edge' cases just return received value back

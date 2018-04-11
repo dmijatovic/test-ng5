@@ -6,8 +6,12 @@ const data={
   columns:[
     { id:'col1', name:'Col 1', sort:'asc', type:'string' },
     { id:'col2', name:'Col 2', sort:'', type:'date' },
-    { id:'col3', name:'Col 3', sort:'', type:'float', treshold:20000 },
-    { id:'col4', name:'Col 4', sort:'', type:'integer', treshold:50000 }
+    { id:'col3', name:'Col 3', sort:'', type:'float',
+      treshold:20000 },
+    { id:'col4', name:'Col 4', sort:'', type:'integer',
+      treshold:75000, dec:0 },
+    { id:'col4', name:'Col 5', sort:'', type:'currency',
+      treshold:25000, dec:2, pre:"$ ", post:" -"}
   ],
   records:[
     {col1:'Data rec 1, col1', col2:'1970-25-11', col3:"1.5456", col4: null},
