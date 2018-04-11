@@ -9,6 +9,7 @@ import { AlertDirective } from './alert.directive';
 
 
 import { SortService } from './sort.service';
+import { FormatValPipe } from './format-val.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { SortService } from './sort.service';
   ],
   declarations: [
     CounterComponent, AppSortDirective, AppColSort,
-    HoverDirective, AlertDirective
+    HoverDirective, AlertDirective, FormatValPipe
   ],
   exports:[
     CounterComponent, AppSortDirective, AppColSort,
