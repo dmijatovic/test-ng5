@@ -132,5 +132,13 @@ Angular project created using angular-cli provides 2 testing models: unit test a
 
 ### Unit test this project
 - run unit test using `ng test`. Turn of breaking tests using x before suite definition
-- 
+- run only CounterComponent test by setting f before describe
+- extend CounterComponent test with:
+  - test oneUp function: for incement 1 for local count variable
+  - test oneDown function: for decrement 1 for local count variable
+  - test reset function: for reset to 0 for local count variable
+  - test all three functions but using html output in template: implement debugElement, HTMLElement and detectChanges
+  - test EventEmitter OneUpDownReset(). Subscribe to emitter in order to receive value
+- implement code coverage reporting using commandline parameter --code-coverage  
+
 
