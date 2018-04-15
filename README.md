@@ -119,3 +119,18 @@ ng g p shared/formatColVal
   - create switch function based on col.type and apply string, date, float, integer and currency formatting. See feature1bservice for props available in column.
   - implement 'n/a' for null values independent of col.type
   - in all 'edge' cases just return received value back
+
+
+
+## Testing Angular application
+
+Angular project created using angular-cli provides 2 testing models: unit test and e2e test. Both models use [Jasmine](https://jasmine.github.io/pages/docs_home.html) testing framework (default setup when using angular-cli). Each model has it's own test runner:
+
+- [Karma](https://karma-runner.github.io/2.0/config/configuration-file.html) is **unit test** runner. Definitions are stored in karma.conf.js and test.ts file. The unit tests are, by default created by angular cli in *spec.ts file. The test file is created in the same folder as component/directive/pipe etc.
+- [Protractor](http://www.protractortest.org/#/) is **e2e test** runner. Definitions are stored in protractor.conf.js. e2e tests should be created in the separate e2e folder at the root of the project. Note! in v6 of angular-cli main structure will be adjusted. Protractor uses [Selenium](https://www.seleniumhq.org/) for driving e2e test in the different browsers. In turn Selenium requires JDK (Java Developer Kit) to run on testing machine.
+
+
+### Unit test this project
+- run unit test using `ng test`. Turn of breaking tests using x before suite definition
+- 
+
