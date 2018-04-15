@@ -139,6 +139,16 @@ Angular project created using angular-cli provides 2 testing models: unit test a
   - test reset function: for reset to 0 for local count variable
   - test all three functions but using html output in template: implement debugElement, HTMLElement and detectChanges
   - test EventEmitter OneUpDownReset(). Subscribe to emitter in order to receive value
-- implement code coverage reporting using commandline parameter --code-coverage  
+- implement code coverage reporting using commandline parameter --code-coverage
+
+- implement test for format-col-val.pipe
+  - it should create instance
+  - it should return n/a when null
+  - it should return n/a when undefined
+  - it should return original value when args not provided
+  - it should call date pipe when type:date provided in args: use spyOn (date,transform)
+  - it should call formatNumber when type in number/decimal/integer/float
+  - it should round to whole number when dec prop not provided
+  - it should round number to amount decimals provided  
 
 
