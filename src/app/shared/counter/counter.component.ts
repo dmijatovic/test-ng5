@@ -1,9 +1,9 @@
-import { 
-  Component, OnInit, 
-  Input, Output, EventEmitter 
+import {
+  Component, OnInit,
+  Input, Output, EventEmitter
 } from '@angular/core';
 
-//import { CounterService } from './counter.service' 
+//import { CounterService } from './counter.service'
 
 @Component({
   selector: 'app-counter',
@@ -21,19 +21,19 @@ export class CounterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.count = this.counterSvc.count    
+    //this.count = this.counterSvc.count
   }
 
   oneUp(){
     console.log("one up")
-    //this.count++;
+    this.count++;
     this.OneUpDownReset.next(1);
     //this.counterSvc.setOnUpDownReset(1);
   }
 
   oneDown(){
     console.log("one down")
-    //this.count--;
+    this.count--;
     this.OneUpDownReset.next(-1);
     //this.counterSvc.setOnUpDownReset(1);
   }
@@ -42,7 +42,7 @@ export class CounterComponent implements OnInit {
     console.log("reset")
     this.OneUpDownReset.next(- this.count);
     //this.counterSvc.setOnUpDownReset(- this.count);
-    //this.count=0;
+    this.count=0;
   }
 
 }
