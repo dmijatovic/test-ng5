@@ -2,7 +2,8 @@
 <div class="title">
   {{title}}
 </div>
-<div class="count">
+<div class="count"
+  [class.warning]="count < 0">
   {{count}}
 </div>
 <nav class="cnt-btn">
