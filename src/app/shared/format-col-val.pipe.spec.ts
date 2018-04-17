@@ -3,7 +3,7 @@ import { FormatColVal } from './format-col-val.pipe';
 import { DatePipe } from '@angular/common';
 import { util } from '../app.config';
 
-fdescribe('FormatColValPipe', () => {
+xdescribe('FormatColValPipe', () => {
 
   const date = new DatePipe(null);
   const fpipe = new FormatColVal(date);

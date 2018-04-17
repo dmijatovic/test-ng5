@@ -18,12 +18,13 @@ export class AlertDirective implements OnChanges {
   ngOnInit(){
     /*
     console.log("AlertDirective...onInit..."
-      //, this.colDef, this.cellValue
+      , this.colDef, this.cellValue
     );*/
     this.applyWarning();
   }
   applyWarning(){
     //debugger
+    //console.log("applyWarning...", this.colDef, this.cellValue, this.el);
     if (this.colDef && this.colDef.treshold && this.cellValue){
       if (this.colDef.treshold > this.cellValue){
         this.el.nativeElement.classList.add("custom-alert-class");

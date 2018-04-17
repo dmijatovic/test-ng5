@@ -4,7 +4,7 @@ import { CounterComponent } from './counter.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('CounterComponent', () => {
+xdescribe('CounterComponent', () => {
   let component: CounterComponent;
   let fixture: ComponentFixture<CounterComponent>;
 
@@ -82,6 +82,31 @@ describe('CounterComponent', () => {
     //oneDown emits -1 value
     component.oneDown();
     expect(data).toBe(-1);
+  });
+
+
+  it('should apply warning class when count < 0',()=>{
+    //decrement, now is negative
+    component.oneDown();
+    //refresh
+    fixture.detectChanges();
+    //get debug element
+    debugEl = fixture.debugElement.query(By.css(".count"));
+    htmlEl = debugEl.nativeElement;
+    //check warning class
+    expect(htmlEl.classList).toContain("warning");
+  });
+
+
+  it('should call onUp functions when button#oneup clicked',()=>{
+    //get debug element
+    let de = fixture.debugElement.query(By.css("#oneup"));
+
+    //click on the button
+    de.triggerEventHandler('click',null);
+
+    //check value
+    expect(component.count).toBe(1);
   });
 
 });

@@ -2,11 +2,12 @@
 <div class="title">
   {{title}}
 </div>
-<div class="count">
+<div class="count"
+  [class.warning]="count < 0">
   {{count}}
 </div>
 <nav class="cnt-btn">
-  <button (click)="oneUp()">Up</button>
-  <button (click)="oneDown()">Down</button>
-  <button (click)="reset()">Reset</button>
+  <button id="oneup" (click)="oneUp()">Up</button>
+  <button id="onedown" (click)="oneDown()">Down</button>
+  <button id="reset" (click)="reset()">Reset</button>
 </nav>
