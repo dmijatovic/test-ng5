@@ -8,8 +8,8 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      
-      <button *ngFor="let item of menuItems" 
+
+      <button *ngFor="let item of menuItems"
         mat-menu-item
         [routerLink]="item.path">
         <mat-icon>{{item.icon}}</mat-icon>

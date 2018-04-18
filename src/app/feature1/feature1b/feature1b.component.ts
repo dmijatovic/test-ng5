@@ -30,11 +30,13 @@ export class Feature1bComponent implements OnInit {
 
   getDataSequential(){
     this.data.getId()
-    .switchMap((id)=>{
+    .switchMap((id:any)=>{
+      //console.log("Id received...", id);
       //get id first then
       return this.data.getData1(id);
     })
     .subscribe((d:any)=>{
+      //console.log("getData1 received...", d);
       //console.log(d);
       this.columns = d.columns;
       this.records = d.records;

@@ -32,7 +32,7 @@ export const colDef=[
 @Injectable()
 export class Feature1bService {
   constructor(){
-    console.log('Feature1bService...started');
+    //console.log('Feature1bService...started');
   }
   /**
    * Simulate id request

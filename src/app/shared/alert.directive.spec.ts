@@ -23,7 +23,7 @@ export class TestComponent {
 }
 
 
-fdescribe('AlertDirective', () => {
+describe('AlertDirective', () => {
   let fixture:ComponentFixture<TestComponent>,
     fe:DebugElement, el:HTMLElement;
 

@@ -20,7 +20,7 @@ export class AppSortDirective {
   //emit when sort change
   colSortChange = new EventEmitter();
   constructor() {
-    console.log("SortDirective started...");
+    //console.log("SortDirective started...");
   }
   emitSortRequest(col){
     console.log("AppSortDirective...emitSortRequest...", col);
