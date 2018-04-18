@@ -154,10 +154,17 @@ Angular project created using angular-cli provides 2 testing models: unit test a
   - it should call formatNumber when type in number/decimal/integer/float
   - it should round to whole number when dec prop not provided
   - it should round number to amount decimals provided
--implement tests for alert directive (attribute directive)
-  - use element stub
-  -
 
-- test router/params/component with router-outlet
-  - should have router-outlet
-  - should have routerLink
+-implement tests for alert directive (attribute directive)
+  - use 'stub' component
+  - add both stub component and directive into testbed module
+
+- implement tests for feature1bcomponent
+  - should create component
+  - should return fake data
+
+- implement test on main.component
+  - add all dependencies to testbed module, use RouterTestingModule from @angular/router/testing
+  - it should have router-outlet (use query by.directive)
+
+### e2e tests
