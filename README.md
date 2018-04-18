@@ -168,3 +168,21 @@ Angular project created using angular-cli provides 2 testing models: unit test a
   - it should have router-outlet (use query by.directive)
 
 ### e2e tests
+e2e testing are done using Protractor. Configuration is stored in protractor.conf.js
+
+To start e2e run `npm run e2e`. Examine definition in package.json
+
+Test are performed in browser. 
+
+Test are stored in e2e folder. Start file is app.e2e-spec.ts. In e2e testing each page has it's own test script file. By default with cli there is app.po.ts file. po stands for page-object.
+
+- write test for checking title on app.page
+- checking menu button
+- navigate to page
+- check homepage title
+- check counter increase
+- check counter decrease
+
+
+
+
