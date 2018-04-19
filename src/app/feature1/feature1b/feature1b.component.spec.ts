@@ -66,10 +66,8 @@ describe('Feature1bComponent', () => {
         records: fs.rec
       })
     )
-    //expect(spyOn(svc,'getData1')).toHaveBeenCalledWith("101");
-    //expect(spyOn(svc,'getData1')).toHaveBeenCalled;
+    //start ngOnInit();
     fixture.detectChanges();
-    //component.getDataSequential();
     //console.log("columns...", component.columns);
     expect(component.columns).toBe(fs.col);
   });

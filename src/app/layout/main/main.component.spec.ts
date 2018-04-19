@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { By } from '@angular/platform-browser';
 
 import { app_config as cfg } from '../../app.config';
-
 //material
+
 import {
   MatMenuModule,
   MatIconModule,
@@ -15,7 +15,7 @@ import {
 
 import { MainPageTemplate } from './main.component';
 
-fdescribe('MainPageTemplate', () => {
+describe('MainPageTemplate', () => {
   let component: MainPageTemplate;
   let fixture: ComponentFixture<MainPageTemplate>;
   let router:RouterTestingModule;

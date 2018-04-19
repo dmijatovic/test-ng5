@@ -37,7 +37,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - add same reference to help.component.scss
 - examine header of index.html
   - how many components are on page?
-  - how many styles are added to header? 
+  - how many styles are added to header?
 
 - add user template to user page
 - style:
@@ -85,18 +85,18 @@ Authentication proces is stated by user.service.onInit() function. Process is as
 
 - <b>loadDiscoveryDocument</b>: it can be automatically downloaded based on ADFS info defined in environment.ts. OR it can be manually downloaded (Schiphol case). Discovery document contains ADFS server specific definitions required to handle a login attempt. In combination with the settings provided in environment file this is complete information that needed for app to be able to handle login attempt according to OIDC and implicitFlow 'protocol'
 
-- <b>handleLoginAttempt</b>: after discovery document is loaded the login process is started according to implicitFlow. This function starts with the check if user already has valid token and is split in two parts. 
+- <b>handleLoginAttempt</b>: after discovery document is loaded the login process is started according to implicitFlow. This function starts with the check if user already has valid token and is split in two parts.
   - No valid token: The authentication process is just stared. The user is redirected to ADFS login page. In case of 'deep' linking 'desired' url is passed to ADFS server usign function oauth2.initImplicitFlow(url).
   - hasValidToken: if user has valid token it means that user completed login via ADFS server and is redirected back to out app. In that case we can procees with app internal process, like saving token and profile information received from ADFS server. And we can redirect user to proper page in case of deep linking.
 
-- loggedIn$ observable subject and setLoggedIn: 
+- loggedIn$ observable subject and setLoggedIn:
 
 - silentRefresh: there is support for silentrefresh using iframe in file silent_renew.html. This file needs to be places in root of the app.
 
 
 ## Directives
 
-1. Create alert directive as part of shared module. Alert directive has 2 inputs: colDef and cellValue. Implement alert directive on feature 1b page table. Use feature 1b service and column definitions provided in the service. If the value is below treshold the cell should have "custom-alert-class". All info is avaliable in the service file.
+1. Create alert directive as part of shared module. Alert directive has 2 inputs: colDef and cellValue. Implement alert directive on feature 1b page table. Use feature 1b service and column definitions provided in the service. If the value is below threshold the cell should have "custom-alert-class". All info is available in the service file.
 
 2. Create hover directive as part of shared module. On mouse enter element should get class "custom-hover-class". On mouse leave the class should be removed.
 
@@ -130,7 +130,55 @@ Angular project created using angular-cli provides 2 testing models: unit test a
 - [Protractor](http://www.protractortest.org/#/) is **e2e test** runner. Definitions are stored in protractor.conf.js. e2e tests should be created in the separate e2e folder at the root of the project. Note! in v6 of angular-cli main structure will be adjusted. Protractor uses [Selenium](https://www.seleniumhq.org/) for driving e2e test in the different browsers. In turn Selenium requires JDK (Java Developer Kit) to run on testing machine.
 
 
-### Unit test this project
+### Unit test this project (C1)
 - run unit test using `ng test`. Turn of breaking tests using x before suite definition
-- 
+- run only CounterComponent test by setting f before describe
+- extend CounterComponent test with:
+  - test oneUp function: for incement 1 for local count variable
+  - test oneDown function: for decrement 1 for local count variable
+  - test reset function: for reset to 0 for local count variable
+  - test all three functions but using html output in template: implement debugElement, HTMLElement and detectChanges
+  - test EventEmitter OneUpDownReset(). Subscribe to emitter in order to receive value
+- implement code coverage reporting using commandline parameter --code-coverage
 
+### Unit test this project (C2)
+- extend  CounterComponent test with:
+  - it should apply class warning on count div when count < 0
+  - check if click on the button(s) works
+- implement test for format-col-val.pipe
+  - it should create instance
+  - it should return n/a when null
+  - it should return n/a when undefined
+  - it should return original value when args not provided
+  - it should call date pipe when type:date provided in args: use spyOn (date,transform)
+  - it should call formatNumber when type in number/decimal/integer/float
+  - it should round to whole number when dec prop not provided
+  - it should round number to amount decimals provided
+
+- implement tests for alert directive (attribute directive)
+  - use 'stub' component
+  - add both stub component and directive into testbed module
+
+- implement tests for feature1bcomponent
+  - should create component
+  - should return fake data
+
+- implement test on main.component
+  - add all dependencies to testbed module, use RouterTestingModule from @angular/router/testing
+  - it should have router-outlet (use query by.directive)
+
+### e2e tests
+e2e testing are done using Protractor. Configuration is stored in protractor.conf.js
+
+To start e2e run `npm run e2e`. Examine definition in package.json
+
+Test are performed in browser.
+
+Test are stored in e2e folder. Start file is app.e2e-spec.ts. In e2e testing each page has it's own test script file. By default with cli there is app.po.ts file. `po` stands for page-object.
+
+- write test for checking title on app.page
+- checking menu button
+- navigate to page
+- check homepage title
+- check counter increase
+- check counter decrease
