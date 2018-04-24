@@ -168,21 +168,41 @@ Angular project created using angular-cli provides 2 testing models: unit test a
   - it should have router-outlet (use query by.directive)
 
 ### e2e tests
-e2e testing are done using Protractor. Configuration is stored in protractor.conf.js
 
-To start e2e run `npm run e2e`. Examine definition in package.json
+e2e testing is done using [Protractor](https://github.com/angular/protractor). The configuration is stored in protractor.conf.js. To start e2e run `npm run e2e`. Examine definition in package.json. Test are performed in the browser defined in conf file under `capabilities`. Selenium WebDriver is used to 'drive' browser(s).
 
-Test are performed in browser. 
+Test are stored in e2e folder. Start file is app.e2e-spec.ts. In e2e testing each page has it's own test script file. By default with cli there is app.po.ts file. po stands for page-object. Each test should have po file that selects specific elements of that page that should be tested.
 
-Test are stored in e2e folder. Start file is app.e2e-spec.ts. In e2e testing each page has it's own test script file. By default with cli there is app.po.ts file. po stands for page-object.
+Write following e2e tests
 
-- write test for checking title on app.page
-- checking menu button
-- navigate to page
-- check homepage title
-- check counter increase
-- check counter decrease
+- App page:
+  - should display AppTitle
+  - should have menu button
+  - should have more than 1 menu item in menu
 
+- Home page:
+  - should have title home works!
+  - should have 3 counter components
+  - should increase counter by 1 using Up (use by.buttonText)
+  - should decrease counter by 1 using Down (use by.cssContainingText)
 
+- Feature1a page:
+  - should navigate to feature1a page
+  - should have title feature1 works
+  - should have 3 tabs
+  - should have 1 counter component (on open tab)
 
+- Feature1b page:
+  - should navigate to feature1b overview page
+  - should have title feature1b overview works!
+  - should load table data with some dummy records
 
+- User page:
+  - should navigate to user page
+  - should have page title User page
+  - should have input firstName
+  - should accept text input in firstName
+  - should have ng-invalid class on form when not all info provided
+  - should have ng-valid class when all required info provided
+
+- Run test with EDGE/IE11 too?
