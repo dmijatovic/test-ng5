@@ -120,8 +120,6 @@ ng g p shared/formatColVal
   - implement 'n/a' for null values independent of col.type
   - in all 'edge' cases just return received value back
 
-
-
 ## Testing Angular application
 
 Angular project created using angular-cli provides 2 testing models: unit test and e2e test. Both models use [Jasmine](https://jasmine.github.io/pages/docs_home.html) testing framework (default setup when using angular-cli). Each model has it's own test runner:

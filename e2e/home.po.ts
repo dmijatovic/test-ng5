@@ -15,17 +15,21 @@ export class HomePage {
     return element(by.css('app-home .teller')).getText();
   }
 
+  getAppCounters(){
+    return element.all(by.css('app-counter'))
+  }
+
   getFirstAppCounter(){
     //return element(by.css('[title="Tellerje 1"] .title')).getText();
-    return element(by.css('app-counter'));
+    return element.all(by.css('app-counter')).get(0);
   }
 
   getFirstAppCountUpBtn(){
-    return element(by.cssContainingText('button','Up'));
+    return element.all(by.cssContainingText('button','Up')).get(0);
   }
 
   getFirstAppCountDownBtn(){
-    return element(by.cssContainingText('button','Down'));
+    return element.all(by.cssContainingText('button','Down')).get(0);
   }
 
 }
