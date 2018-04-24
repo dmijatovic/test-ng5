@@ -10,7 +10,8 @@
     "test": "ng test",
     "coverage":"ng test --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "webdriver": "webdriver-manager update"
   },
   "private": true,
   "dependencies": {

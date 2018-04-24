@@ -16,7 +16,7 @@ export class HomePage {
   }
 
   getAppCounters(){
-    return element.all(by.css('app-counter'))
+    return element.all(by.css('app-counter'));
   }
 
   getFirstAppCounter(){
@@ -25,7 +25,8 @@ export class HomePage {
   }
 
   getFirstAppCountUpBtn(){
-    return element.all(by.cssContainingText('button','Up')).get(0);
+    //return element.all(by.cssContainingText('button','Up')).get(0);
+    return element.all(by.buttonText('Up')).get(0);
   }
 
   getFirstAppCountDownBtn(){

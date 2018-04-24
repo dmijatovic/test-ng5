@@ -21,11 +21,19 @@ describe('App Page', () => {
     expect(page.getMenuBtn()).toBeTruthy();
   });
 
-  it('should navigate using menu',()=>{
+  it('should have more than 1 menu item in the menu',()=>{
     let mnu = page.getMenuBtn();
-
+    //click on menu to load menu items!
     mnu.click();
-    //browser.pause();
+
+    //wait for 1 second
+    browser.sleep(1000);
+
+    //get items now!
+    let mnuItems = page.getMenuItems();
+    //check how manu items are there
+    expect(mnuItems.count()).toBeGreaterThan(1);
+
   });
 
 });

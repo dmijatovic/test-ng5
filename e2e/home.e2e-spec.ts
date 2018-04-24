@@ -9,7 +9,7 @@ describe('Home page',()=>{
     home = new HomePage();
   });
 
-  it('should display home works!', () => {
+  it('should have title home works!', () => {
     home.navigateTo();
     //expectation
     expect(home.getHomePageTitle()).toEqual("home works!");

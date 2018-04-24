@@ -18,4 +18,8 @@ export class AppPage {
   getMenuBtn(){
     return element(by.css('.app-nav button'));
   }
+
+  getMenuItems(){
+    return element.all(by.css('.mat-menu-item'));
+  }
 }
